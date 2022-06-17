@@ -8,13 +8,11 @@ import time
 
 sentences = open('sentences.txt', 'r').read().split('\n')
 prev_line = ""
-word = ""
-
 
 end_of_typing = False
 starting_time = 0
 beginning_time = 0
-user_line_arr = []
+user_line = ""
 
 
 def assign_a_line(arr_sentences):
@@ -30,33 +28,31 @@ def assign_a_line(arr_sentences):
 
 def start_calculating(event):
     global starting_time, beginning_time
-    global end_of_typing, user_line_arr, text_to_display, word
+    global end_of_typing, user_line, text_to_display
 
     if end_of_typing:
         print('Cannot Type Further')
         return
 
     if starting_time == 0:
-        starting_time = time.localtime().tm_sec
+        starting_time = time.time()
 
     if beginning_time == 0:
-        beginning_time = time.localtime().tm_sec
+        beginning_time = time.time()
 
-    if event.char == " ":
-        user_line_arr.append(word)
-        word = ""
+    if event.keysym == "BackSpace":
+        user_line = user_line[0: len(user_line)-1]
+
     else:
-        word += event.char
-        end_time = time.localtime().tm_sec
+
+        user_line += event.char
+        end_time = time.time()
 
         # check if user has typed the entire string correctly
 
-        test_arr = [item for item in user_line_arr]
+        test_line = user_line
 
-        test_arr.append(word)
-        test_line = " ".join(test_arr)
-
-        gap = round(end_time - starting_time)
+        gap = end_time - starting_time
 
         if len(test_line) == len(text_to_display):
             end_of_typing = True
@@ -64,31 +60,30 @@ def start_calculating(event):
             if is_accu == "Continue":
                 pass
             else:
-                user_line = " ".join(user_line_arr)
-                length_of_user_array = len(user_line)
+                length_of_user_line = len(user_line)
                 seconds_elapsed = end_time - beginning_time
-                chars_per_second = round(length_of_user_array / seconds_elapsed)
+                chars_per_second = round(length_of_user_line / seconds_elapsed)
                 words_per_minute = chars_per_second * (60 / 5)
 
                 end_of_typing = True
-
 
                 show_result(is_accu, words_per_minute)
                 return
 
         if gap > 3:
-            ending_msg = 'You took too long, end of typing period. Click on Reset button to start again.'
+            ending_msg = 'You took too long. End of typing period. Click on Reset button to start again'
+            sentence.config(fg='yellow')
             typing_area.config(highlightcolor='red', highlightbackground='red')
             sentence.config(text=ending_msg)
             return
 
-    starting_time = time.localtime().tm_sec
+    starting_time = time.time()
 
 
-def check_accuracy(user_line, app_line):
+def check_accuracy(user_line_, app_line):
     global end_of_typing
     if end_of_typing:
-        if user_line == app_line:
+        if user_line_ == app_line:
             return True
         else:
             return False
@@ -106,15 +101,15 @@ def show_result(boolean, wpm):
 
 
 def reset_app():
-    global end_of_typing, starting_time, user_line_arr, word, prev_line, text_to_display, beginning_time
+    global end_of_typing, starting_time, user_line
+    global prev_line, text_to_display, beginning_time
     starting_time = 0
     beginning_time = 0
     end_of_typing = False
-    user_line_arr = []
-    word = ""
+    user_line = ""
     prev_line = ""
     text_to_display = assign_a_line(sentences)
-    sentence.config(text=text_to_display)
+    sentence.config(text=text_to_display, fg=FG2)
     typing_area.delete('1.0', 'end')
     typing_area.config(highlightcolor=FG, highlightbackground=FG)
     speed_result.config(text="")
@@ -147,10 +142,10 @@ HEAD2_FONT = (FONT_FAMILY2, FONT_SIZE2, FONT_STYLE1)
 
 heading = "GET YOU TYPING SPEED TESTED"
 text_to_display = assign_a_line(sentences)
+
 instruction = """
 1. The test starts the moment you enter your first letter.
-2. If you have entered an incorrect letter, you cannot correct it with backspace, it will remain wrong.
-3. You can have a pause of only 3 seconds at max.
+2. You can have a pause of only 3 seconds at max.
 """
 
 window = Tk()
