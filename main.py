@@ -13,6 +13,7 @@ end_of_typing = False
 starting_time = 0
 beginning_time = 0
 user_line = ""
+all_speeds = []
 
 
 def assign_a_line(arr_sentences):
@@ -64,10 +65,9 @@ def start_calculating(event):
                 seconds_elapsed = end_time - beginning_time
                 chars_per_second = round(length_of_user_line / seconds_elapsed)
                 words_per_minute = chars_per_second * (60 / 5)
-
                 end_of_typing = True
-
                 show_result(is_accu, words_per_minute)
+                all_speeds.append(words_per_minute)
                 return
 
         if gap > 3:
@@ -113,6 +113,15 @@ def reset_app():
     typing_area.delete('1.0', 'end')
     typing_area.config(highlightcolor=FG, highlightbackground=FG)
     speed_result.config(text="")
+
+
+def show_overall_speed():
+    if len(all_speeds) != 0:
+        sum_ = sum(all_speeds)
+        avg = sum_/len(all_speeds)
+        speed_result.config(text=f"{int(avg)} wpm", fg='yellow')
+    else:
+        speed_result.config(text="Nothing to Show yet", fg='yellow')
 
 
 # -----------------------------------------------------------------------------------------
@@ -165,6 +174,11 @@ typing_area.bind('<KeyPress>', start_calculating)
 reset_btn = Button(text='Reset', fg=FG, bg=BG, font=PARA_FONT,
                    highlightbackground=FG, highlightcolor=FG, highlightthickness=0, border=3,
                    command=reset_app)
+
+overall_btn = Button(text='Show Avg Speed', fg=FG, bg=BG, font=PARA_FONT,
+                   highlightbackground=FG, highlightcolor=FG, highlightthickness=0, border=3,
+                   command=show_overall_speed)
+
 speed_result = Label(text="", fg=FG, bg=BG, font=PARA_FONT)
 
 
@@ -173,6 +187,7 @@ sentence.pack()
 instruction.pack()
 typing_area.pack()
 reset_btn.pack()
+overall_btn.pack()
 speed_result.pack()
 
 window.mainloop()
