@@ -8,11 +8,11 @@ import time
 
 sentences = open('sentences.txt', 'r').read().split('\n')
 prev_line = ""
+user_line = ""
 
 end_of_typing = False
 starting_time = 0
 beginning_time = 0
-user_line = ""
 all_speeds = []
 
 
@@ -152,20 +152,19 @@ HEAD2_FONT = (FONT_FAMILY2, FONT_SIZE2, FONT_STYLE1)
 heading = "GET YOUR TYPING SPEED TESTED"
 text_to_display = assign_a_line(sentences)
 
-instruction = """
+instructions = """
 1. The test starts the moment you enter your first letter.
 2. You can have a pause of only 3 seconds at max.
 """
 
 window = Tk()
-window.minsize(width=1010, height=500)
 window.title('Welcome to Typing Speed Calculator!')
-window.config(bg=BG)
+window.config(bg=BG, pady=10, padx=50)
 
 
 heading = Label(text=heading, font=HEAD_FONT, bg=BG, fg=FG, padx=10, pady=10)
 sentence = Label(text=text_to_display, font=HEAD2_FONT, bg=BG, fg=FG2, pady=10, padx=10, wraplength=800)
-instruction = Label(text=instruction, font=PARA_FONT2,
+instruction = Label(text=instructions, font=PARA_FONT2,
                     fg=FG, bg=BG)
 typing_area = Text(font=PARA_FONT, bg=BG, fg=FG, width=80, height=10, wrap='w',
                    highlightcolor=FG, highlightthickness=4, highlightbackground=FG,
@@ -182,12 +181,21 @@ overall_btn = Button(text='Show Avg Speed', fg=FG, bg=BG, font=PARA_FONT,
 speed_result = Label(text="", fg=FG, bg=BG, font=PARA_FONT)
 
 
-heading.pack()
-sentence.pack()
-instruction.pack()
-typing_area.pack()
-reset_btn.pack()
-overall_btn.pack()
-speed_result.pack()
+# heading.pack()
+# sentence.pack()
+# instruction.pack()
+# typing_area.pack()
+# reset_btn.pack()
+# overall_btn.pack()
+# speed_result.pack()
+
+heading.grid(row=0, column=0, columnspan=3)
+sentence.grid(row=1, column=0, columnspan=3)
+instruction.grid(row=2, column=0, columnspan=3)
+typing_area.grid(row=3, column=0, columnspan=3)
+
+reset_btn.grid(row=4, column=0)
+speed_result.grid(row=4, column=1)
+overall_btn.grid(row=4, column=2)
 
 window.mainloop()
