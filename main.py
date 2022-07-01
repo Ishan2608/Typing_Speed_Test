@@ -68,7 +68,8 @@ def start_calculating(event):
                 end_of_typing = True
                 show_result(is_accu, words_per_minute)
                 all_speeds.append(words_per_minute)
-                return
+
+                window.after(2000, reset_app)
 
         if gap > 3:
             ending_msg = 'You took too long. End of typing period. Click on Reset button to start again'
