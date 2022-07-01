@@ -162,7 +162,7 @@ window = Tk()
 window.title('Welcome to Typing Speed Calculator!')
 window.config(bg=BG, pady=10, padx=50)
 
-
+# CREATING UI COMPONENTS
 heading = Label(text=heading, font=HEAD_FONT, bg=BG, fg=FG, padx=10, pady=10)
 sentence = Label(text=text_to_display, font=HEAD2_FONT, bg=BG, fg=FG2, pady=10, padx=10, wraplength=800)
 instruction = Label(text=instructions, font=PARA_FONT2,
@@ -174,13 +174,12 @@ typing_area.bind('<KeyPress>', start_calculating)
 reset_btn = Button(text='Reset', fg=FG, bg=BG, font=PARA_FONT,
                    highlightbackground=FG, highlightcolor=FG, highlightthickness=0, border=3,
                    command=reset_app)
-
 overall_btn = Button(text='Show Avg Speed', fg=FG, bg=BG, font=PARA_FONT,
                    highlightbackground=FG, highlightcolor=FG, highlightthickness=0, border=3,
                    command=show_overall_speed)
-
 speed_result = Label(text="", fg=FG, bg=BG, font=PARA_FONT)
 
+# PLACING UI COMPONENTS ON SCREEN
 heading.grid(row=0, column=0, columnspan=3)
 sentence.grid(row=1, column=0, columnspan=3)
 instruction.grid(row=2, column=0, columnspan=3)
