@@ -181,20 +181,10 @@ overall_btn = Button(text='Show Avg Speed', fg=FG, bg=BG, font=PARA_FONT,
 
 speed_result = Label(text="", fg=FG, bg=BG, font=PARA_FONT)
 
-
-# heading.pack()
-# sentence.pack()
-# instruction.pack()
-# typing_area.pack()
-# reset_btn.pack()
-# overall_btn.pack()
-# speed_result.pack()
-
 heading.grid(row=0, column=0, columnspan=3)
 sentence.grid(row=1, column=0, columnspan=3)
 instruction.grid(row=2, column=0, columnspan=3)
 typing_area.grid(row=3, column=0, columnspan=3)
-
 reset_btn.grid(row=4, column=0)
 speed_result.grid(row=4, column=1)
 overall_btn.grid(row=4, column=2)
