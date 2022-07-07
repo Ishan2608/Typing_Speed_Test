@@ -71,7 +71,7 @@ def start_calculating(event):
 
                 window.after(2000, reset_app)
 
-        if gap > 3:
+        if gap > 5:
             ending_msg = 'You took too long. End of typing period. Click on Reset button to start again'
             sentence.config(fg='yellow')
             typing_area.config(highlightcolor='red', highlightbackground='red')
@@ -155,7 +155,7 @@ text_to_display = assign_a_line(sentences)
 
 instructions = """
 1. The test starts the moment you enter your first letter.
-2. You can have a pause of only 3 seconds at max.
+2. You can have a pause of only 5 seconds at max.
 """
 
 window = Tk()
