@@ -25,7 +25,9 @@ Type in the sentence shown. Then your speed is shown along with the message, if 
 
 <h3> Step 2: Setting up Globals  </h3>
 <p>
-  Text
+  Next step is to setup some global variables because We want some values to persist their value outside the function that will hold the logic of our application.
+  One is the user entered line, previous line, a list of speeds per tries, two time tracking variables, beginning and current time, and a boolean to determine if
+  user typing is allowed or not. We also need a global to keep the sentences that will be diplayed to user to type for test.
 </p>
 
 <h3> Step 3: Heading  </h3>
