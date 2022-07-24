@@ -52,7 +52,6 @@ def start_calculating(event):
         # check if user has typed the entire string correctly
 
         test_line = user_line
-
         gap = end_time - starting_time
 
         if len(test_line) == len(text_to_display):
@@ -68,7 +67,6 @@ def start_calculating(event):
                 end_of_typing = True
                 show_result(is_accu, words_per_minute)
                 all_speeds.append(words_per_minute)
-
                 window.after(2000, reset_app)
 
         if gap > 5:
@@ -95,10 +93,10 @@ def check_accuracy(user_line_, app_line):
 def show_result(boolean, wpm):
     if boolean:
         typing_area.config(highlightcolor='green', highlightbackground='green')
-        speed_result.config(text=f"Your Typing Speed is {wpm} words per minute WITHOUT ERRORS", fg=FG)
+        sentence.config(text=f" Speed: {wpm} wpm WITHOUT ERRORS", fg='green')
     else:
         typing_area.config(highlightcolor='red', highlightbackground='red')
-        speed_result.config(text=f"Your Typing Speed is {wpm} words per minute WITH ERRORS", fg='red')
+        sentence.config(text=f" Speed: {wpm} wpm WITH ERRORS", fg='red')
 
 
 def reset_app():
@@ -113,16 +111,15 @@ def reset_app():
     sentence.config(text=text_to_display, fg=FG2)
     typing_area.delete('1.0', 'end')
     typing_area.config(highlightcolor=FG, highlightbackground=FG)
-    speed_result.config(text="")
 
 
 def show_overall_speed():
     if len(all_speeds) != 0:
         sum_ = sum(all_speeds)
         avg = sum_/len(all_speeds)
-        speed_result.config(text=f"{int(avg)} wpm", fg='yellow')
+        sentence.config(text=f"{int(avg)} wpm", fg='yellow')
     else:
-        speed_result.config(text="Nothing to Show yet", fg='yellow')
+        sentence.config(text="Nothing to Show yet", fg='yellow')
 
 
 # -----------------------------------------------------------------------------------------
@@ -171,21 +168,19 @@ typing_area = Text(font=PARA_FONT, bg=BG, fg=FG, width=80, height=10, wrap='w',
                    highlightcolor=FG, highlightthickness=4, highlightbackground=FG,
                    padx=5, pady=5)
 typing_area.bind('<KeyPress>', start_calculating)
-reset_btn = Button(text='Reset', fg=FG, bg=BG, font=PARA_FONT,
+reset_btn = Button(text='Reset Application', fg=FG, bg=BG, font=PARA_FONT,
                    highlightbackground=FG, highlightcolor=FG, highlightthickness=0, border=3,
                    command=reset_app)
-overall_btn = Button(text='Show Avg Speed', fg=FG, bg=BG, font=PARA_FONT,
+overall_btn = Button(text='Show Average Speed', fg=FG, bg=BG, font=PARA_FONT,
                    highlightbackground=FG, highlightcolor=FG, highlightthickness=0, border=3,
                    command=show_overall_speed)
-speed_result = Label(text="", fg=FG, bg=BG, font=PARA_FONT)
 
 # PLACING UI COMPONENTS ON SCREEN
-heading.grid(row=0, column=0, columnspan=3)
-sentence.grid(row=1, column=0, columnspan=3)
-instruction.grid(row=2, column=0, columnspan=3)
-typing_area.grid(row=3, column=0, columnspan=3)
-reset_btn.grid(row=4, column=0)
-speed_result.grid(row=4, column=1)
-overall_btn.grid(row=4, column=2)
+heading.grid(row=0, column=0, columnspan=2)
+sentence.grid(row=1, column=0, columnspan=2)
+instruction.grid(row=2, column=0, columnspan=2)
+typing_area.grid(row=3, column=0, columnspan=2)
+reset_btn.grid(row=4, column=0, sticky='ew')
+overall_btn.grid(row=4, column=1, sticky='ew')
 
 window.mainloop()
