@@ -36,12 +36,22 @@ Type in the sentence shown. Then your speed is shown along with the message, if 
   user typing is allowed or not. We also need a global to keep the sentences that will be diplayed to user to type for test.
 </p>
 
-<h3> Step 3: Heading  </h3>
+<h3> Step 3: User Starts Typing  </h3>
 <p>
   Text
 </p>
 
-<h3> Step 4: Heading  </h3>
+<h3> Step 4: Checking Speed and Accuracy  </h3>
+<p>
+  Text
+</p>
+
+<h3> Step 5: Automatic Reset  </h3>
+<p>
+  Text
+</p>
+
+<h3> Step 6: Average Speed  </h3>
 <p>
   Text
 </p>
