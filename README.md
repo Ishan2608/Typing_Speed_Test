@@ -7,10 +7,16 @@ Type in the sentence shown. Then your speed is shown along with the message, if 
   <img src="./typing_speed_test.gif" alt="Code Output">
 </div>
 
-<b> <em> Text </em> </b>
-
 <hr>
+  <h1> Program Flowchart </h1>
+  <div>
+    <img src="./Typing Speed Calculator Flowchart.png" alt="Program Flowchart">
+  </div>
+<hr>
+
 <h1> Guide to Build This Project <i>(Work in Progress)</i> </h1>
+
+<b> <em> Text </em> </b>
 
 <h3> Step 1: Setting up the UI  </h3>
 <p>
