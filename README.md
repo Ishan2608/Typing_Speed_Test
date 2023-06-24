@@ -1,7 +1,6 @@
 # Python Desktop Application - <b> <em> Typing Speed Calculator </em> </b>
-A GUI application written in python to get your typing speed tested.
 
-Type in the sentence shown. Then your speed is shown along with the message, if you did or did not make any errors. Your speed for each sentence keeps getting stored and you can view your overall average speed.
+Using Python's "tkinter" library, I have developed an engaging desktop application that allows users to test and improve their typing speed. With a user-friendly interface, the application prompts users to type several displayed texts within a specified time limit. After completing the typing session, the application calculates the user's typing speed, providing valuable feedback and an opportunity for skill enhancement. This interactive and educational tool is perfect for individuals seeking to enhance their typing proficiency in a fun and intuitive way.
 
 <div>
   <img src="./typing_speed_tester_output.gif" alt="Code Output">
